@@ -1,0 +1,31 @@
+package collectionsPractice;
+
+import java.awt.geom.Line2D;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
+public class OverallConcept {
+
+	public static void main(String[] args) {
+		test();
+
+	}
+	
+	private static void test() {
+		List<Integer> l1 = new ArrayList<>();
+		l1.add(1);
+		l1.add(2);
+		l1.add(3);
+		l1.add(1);
+		System.out.println("l1: "+ l1); //order preserved and duplicates allowed.
+		
+		List<Integer> l2 = new LinkedList<>();
+		l2.add(1);
+		l2.add(2);
+		l2.add(3);
+		l2.add(1);
+		System.out.println("l2: "+ l2); //order preserved and duplicates allowed.
+	}
+
+}

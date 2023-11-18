@@ -1,0 +1,270 @@
+package collectionsPractice;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.NavigableSet;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
+
+public class SetDemo {
+
+	public static void main(String[] args) {
+		hashSetDemo1();
+		linkedHashSetDemo();
+		treeSetDemo();
+		navigableSetDemo();
+	}
+
+	private static void hashSetDemo1() {
+		Set<String> set1 = new HashSet<>();
+		set1.add("a");
+		set1.add("b");
+		set1.add("a");
+		System.out.println(set1);
+		
+		Book book1 = new Book("Kanya","kumari",1999);
+		Book book2 = new Book("Kanya","kumari",1999);
+		Set<Book> set2 = new HashSet<>();
+		set2.add(book1);
+		set2.add(book2);
+		System.out.println(set2);
+		
+	}
+	
+	private static void linkedHashSetDemo() {
+		Set<String> hashSet = new HashSet<>();
+		hashSet.add("kanya");
+		hashSet.add("kumari");
+		hashSet.add("Jashu");
+		hashSet.add("buddi");
+		System.out.println("hashSet = " + hashSet); //not in order.
+		
+		Set<String> linkedHashSet = new LinkedHashSet<>();
+		linkedHashSet.add("kanya");
+		linkedHashSet.add("kumari");
+		linkedHashSet.add("jashu");
+		linkedHashSet.add("buddi");
+		System.out.println("linkedhashset = " + linkedHashSet); // follow same insertion order.
+		
+	}
+	
+	private static void treeSetDemo() {
+		Set<String> treeSet1 = new TreeSet<String>();  //In treeset we have to give all elements in the string format then 
+		//it will be very easy to give all types of data in string format.
+		treeSet1.add("kanya");
+		treeSet1.add("100");
+		treeSet1.add("10");
+		treeSet1.add("80");
+		treeSet1.add("1000");
+		treeSet1.add("kanya");
+		treeSet1.add("e");
+		System.out.println("treeSet1 = " + treeSet1);
+		
+		List<Object> list = new ArrayList<>(); //In the list we can give all types of data by declare them as Object.
+		list.add(10);
+		list.add("kanya");
+		list.add('e');
+		list.add(90.00);
+		System.out.println(list);
+		
+		Set<Book> treeSet2 = new TreeSet<>(new NewNewComparator());
+		Book book1 = new Book("Kanya","Kumari",1998);
+		Book book2 = new Book("Jashu","Buddi",2019);
+		Book book3 = new Book("Daddy","Satya",1957);
+		treeSet2.add(book1);
+		treeSet2.add(book2);
+		treeSet2.add(book3);
+		for (Book book : treeSet2) {
+			System.out.println(book);
+			
+		}
+		//System.out.println("treeSet2 = " + treeSet2);
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	private static void navigableSetDemo() {
+		NavigableSet<Integer> treeSet2 = new TreeSet<>();
+		treeSet2.add(1000);
+		treeSet2.add(10);
+		treeSet2.add(90);
+		treeSet2.add(5);
+		System.out.println("treeSet2: " + treeSet2);
+		
+		System.out.println("lower: "+ treeSet2.lower(90));  //<90
+		System.out.println("higher: " + treeSet2.higher(90)); //>90
+		System.out.println("floor: " + treeSet2.floor(780)); //<=780
+		System.out.println("ceiling: " + treeSet2.ceiling(8990)); //>=8990 If not present in the set gives null value.
+		
+		System.out.println("first: "+ treeSet2.first()); //first value in the set.
+		System.out.println("last: "+ treeSet2.last());   //last value in the set.
+		
+		NavigableSet<Integer> descendingSet = treeSet2.descendingSet();
+		System.out.println("descendingSet: "+ descendingSet);
+		
+		NavigableSet<Integer> headSet = treeSet2.headSet(90, true); //inclusive true means takes 90 also in consideration
+		System.out.println("headSet: "+ headSet);
+		NavigableSet<Integer> headSet2 = treeSet2.headSet(90, false); //inclusive false means don't take 90 to  headset.
+		System.out.println("headSet2: "+ headSet2);
+		
+		SortedSet<Integer> subSet = treeSet2.subSet(10, 1000); //by default toElement inclusion is false here.
+		System.out.println("subSet: "+ subSet);
+		
+		SortedSet<Integer> subSet2 = treeSet2.subSet(10, true, 1000, true);
+		System.out.println("subSet2: "+ subSet2);
+		
+		//subSet.add(5); // get IllegalArgumentException will occur bcoz we have add elements range between 10 and 1000.
+		//But we are adding element 5 which is not present in this range.
+		System.out.println("subSet: "+subSet);
+		
+		treeSet2.add(2);
+		System.out.println("treeSet2: "+ treeSet2);
+		treeSet2.add(99);
+		System.out.println("treeSet2: "+ treeSet2);
+		System.out.println("subSet: "+ subSet); //99 will add in subset also.
+		subSet.add(100);
+		System.out.println("treeSet2: "+ treeSet2); //100 will add in parent set also.
+		System.out.println("subSet: "+ subSet); 
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+}
+
+class Book /*implements Comparable<Object>*/{
+	String title;
+	String author;
+	int year;
+	
+	Book(String title1, String author1, int year1) {
+		//super();
+		title = title1;
+		author = author1;
+		year = year1;
+	}
+	
+	public void setTitle(String title1) {
+		this.title = title1;
+	}
+	
+	public String getTitle() {
+		return title;
+	}
+	
+	public void setAuthor(String author1) {
+		author = author1;
+	}
+	
+	public String getAuthor(){
+		return author;
+	}
+	
+	public void setYear(int year1) {
+		year = year1;
+	}
+	
+	public int getYear() {
+		return year;
+	}
+
+	@Override
+	public String toString() {
+		return "Book [title=" + title + ", author=" + author + ", year=" + year + "]";
+	}
+
+	/*@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return getAuthor().compareTo(((Book)o).getAuthor()); //based on author name treeset will sort out.
+	}*/
+	//hashcode and equals methods can write when logically equal elements there.
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((author == null) ? 0 : author.hashCode());
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
+		result = prime * result + year;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Book other = (Book) obj;
+		if (author == null) {
+			if (other.author != null)
+				return false;
+		} else if (!author.equals(other.author))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		if (year != other.year)
+			return false;
+		return true;
+	}
+	
+
+	/*@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		//return getTitle().compareTo(((Book)o).getTitle());
+		return getAuthor().compareTo(((Book)o).getAuthor());
+	}*/
+	
+	/*public int hashCode() {
+		return title.hashCode(); //hashcode and equals methods can write when logically equal elements there.
+	}
+	
+	public boolean equals(Object object) {
+		return (year == ((Book)object).getYear() && (author == ((Book)object).getAuthor())) ;
+	}*/
+	
+	
+
+}
+
+/*class NewComparator implements Comparator<Object> {
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		// TODO Auto-generated method stub
+		return ((Book)o1).getTitle().compareTo(((Book)o2).getTitle());
+	}*/
+	
+class NewNewComparator implements Comparator {
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		// TODO Auto-generated method stub
+		return ((Book)o1).getTitle().compareTo(((Book)o2).getTitle());
+	}
+	
+}
+	

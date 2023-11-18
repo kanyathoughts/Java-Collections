@@ -1,0 +1,117 @@
+package collectionsPractice;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.LinkedHashSet;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
+import java.util.Stack;
+import java.util.TreeMap;
+import java.util.TreeSet;
+import java.util.concurrent.DelayQueue;
+
+public class OverallConcept {
+
+	public static void main(String[] args) {
+		test();
+
+	}
+	
+	private static void test() {
+		List<Integer> l1 = new ArrayList<>();
+		l1.add(1);
+		l1.add(2);
+		l1.add(3);
+		l1.add(1);
+		System.out.println("l1: "+ l1); //order preserved and duplicates allowed.
+		
+		List<Integer> l2 = new LinkedList<>();
+		l2.add(1);
+		l2.add(2);
+		l2.add(3);
+		l2.add(1);
+		System.out.println("l2: "+ l2); //order preserved and duplicates allowed.
+		
+		Set<Integer> s1 = new HashSet<>();
+		s1.add(1);
+		s1.add(7);
+		s1.add(3);
+		s1.add(1);
+		s1.add(9);
+		System.out.println("s1:"+s1); //order not preserved and duplicates not allowed.
+		
+		Set<Object> s2 = new LinkedHashSet<>();
+		s2.add(1);
+		s2.add(7);
+		s2.add(3);
+		s2.add(1);
+		s2.add(9);
+		s2.add("kanya");
+		System.out.println("s2:"+s2); //order preserved and duplicates not allowed.
+		
+		Set<String> s3 = new TreeSet<>();
+		s3.add("1");
+		s3.add("7");
+		s3.add("3");
+		s3.add("1");
+		s3.add("9");
+		s3.add("2.5");
+		s3.add("kanya");
+		s3.add("daddy");
+		System.out.println("s3:"+s3); //elements sorted and duplicates not allowed.
+		
+		//finally in the set duplicates not allowed.
+		//Hashset: no order
+		//linkedHashSet: have order
+		//treeset: sort elements.
+		
+		Map<Integer,Integer> m1 = new HashMap<>();
+		m1.put(1, 10);
+		m1.put(4, 30);
+		m1.put(2, 20);
+		m1.put(3, 30);
+		m1.put(100, 5);
+		m1.put(10, 4);
+		System.out.println("m1:"+m1); //no order and no duplicates of keys.
+		
+		Map<Integer,Integer> m2 = new LinkedHashMap<>();
+		m2.put(1, 10);
+		m2.put(4, 40);
+		m2.put(2, 20);
+		m2.put(3, 30);
+		System.out.println("m2:"+m2); //preserving order and no duplicates of keys.
+		
+		Map<Integer,Integer> m3 = new TreeMap<>();
+		m3.put(1, 10);
+		m3.put(4, 5);
+		m3.put(2, 6);
+		m3.put(3, 30);
+		System.out.println("m3:"+m3); //sorting according to key value and no duplicates of keys.
+		
+		Queue<Integer> q1 = new LinkedList<>();
+		q1.add(1);
+		q1.add(2);
+		q1.add(3);
+		System.out.println("q1:"+q1);
+		
+		Stack<Integer> stack = new Stack<>();
+		stack.add(1);
+		stack.add(2);
+		stack.add(3);
+		stack.remove(2);
+		System.out.println("stack:"+stack); //it is actually behaving like a queue.
+		
+		
+		
+		
+		
+		
+		
+	}
+
+}
